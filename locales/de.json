@@ -1,0 +1,29 @@
+{
+  "CX4": {
+    "config": {
+      "title": "CX4-Kalendereinstellungen",
+      "mode": "Modus",
+      "First Day of week": "Erster Tag der Woche",
+      "weeks in view": "Wochen im Blick",
+      "week offset": "Woche versetzt",
+      "display_weather": "Zeigen Sie die Wettervorhersage für den aktuellen Tag an",
+      "display_week": "Wochennummer anzeigen",
+      "fontsize": "Text Schriftgröße",
+      "maxevents": "Maximal anzuzeigende Ereignisse pro Tag",
+      "week_title": "Woche",
+      "month_title": "Monat",
+      "sun": "Sonntag",
+      "mon": "Montag",
+      "tue": "Dienstag",
+      "wed": "Mittwoch",
+      "thu": "Donnerstag",
+      "fri": "Freitag",
+      "sat": "Samstag",
+      "useSymbol": "Anzeige Symbol für Kalenderereignisse",
+      "useSymbolTrue": "Verwenden Sie den Symbolnamen",
+      "symbol_name": "Symbolname",
+      "symbol_desc": "dies ist der Kurzname des Symbols aus der FontAwesome-Symbolbibliothek",
+      "nosymbol": "Verwenden Sie das Symbol nicht für Kalenderereignisse"
+    }
+  }
+}

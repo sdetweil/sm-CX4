@@ -1,0 +1,29 @@
+{
+  "CX4": {
+    "config": {
+      "title": "CX4 캘린더 설정",
+      "mode": "방법",
+      "First Day of week": "첫 번째 요일",
+      "weeks in view": "몇 주",
+      "week offset": "주 오프셋",
+      "display_weather": "현재 날짜 앞으로의 일기 예보 표시",
+      "display_week": "주 번호 표시",
+      "fontsize": "텍스트 글꼴 크기",
+      "maxevents": "하루에 표시할 최대 이벤트",
+      "week_title": "주",
+      "month_title": "월",
+      "sun": "일요일",
+      "mon": "월요일",
+      "tue": "화요일",
+      "wed": "수요일",
+      "thu": "목요일",
+      "fri": "금요일",
+      "sat": "토요일",
+      "useSymbol": "달력 이벤트에 대한 표시 기호",
+      "useSymbolTrue": "기호 이름 사용",
+      "symbol_name": "기호 이름",
+      "symbol_desc": "이것은 FontAwesome 심볼 라이브러리에 있는 심볼의 짧은 이름입니다.",
+      "nosymbol": "캘린더 이벤트에 기호를 사용하지 마십시오"
+    }
+  }
+}

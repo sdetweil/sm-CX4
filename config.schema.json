@@ -1,0 +1,165 @@
+{
+  "schema": {
+    "CX4": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "title": "{{mode}}",
+          "enum": [
+            "week",
+            "month"
+          ]
+        },
+        "firstDayOfWeek": {
+          "type": "number",
+          "title": "{{First Day of week}}",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "weeks_to_view": {
+          "type": "string",
+          "title": "{{weeks in view}}",
+          "default": "2",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        "week_offset": {
+          "type": "string",
+          "title": "{{week offset}}",
+          "enum": [
+            "-1",
+            "0",
+            "1"
+          ]
+        },
+        "display_weather": {
+          "title": "{{display_weather}}",
+          "type": "boolean",
+          "default": true
+        },
+        "display_week_number": {
+          "title": "{{display_week}}",
+          "type": "boolean",
+          "default": false
+        },
+        "fontsize": {
+          "type": "number",
+          "title": "{{fontsize}}",
+          "default": 14
+        },
+        "maxeventsize": {
+          "type": "number",
+          "title": "{{maxevents}}",
+          "default": 6
+        },
+        "useSymbol":
+        {
+          "type":"stringg",
+          "title":"{{useSymbol}}",
+          "enum":[
+            "0",
+            "1"
+          ]
+        },
+        "symbolName":
+        {
+          "type":"string",
+          "title":"{{symbol_name}}",
+          "default":"calendar-check"
+        }
+
+      }
+    }
+  },
+  "form": [
+    {
+      "title": "{{title}}",
+      "type": "fieldset",
+      "expandable": true,
+      "order": 99,
+      "items": [
+        {
+          "type": "selectfieldset",
+          "title":"Select view mode",
+          "key":"CX4.mode",
+          "items": [
+            {
+              "type": "section",
+              "title": "{{week_title}}",
+              "items": [
+                {
+                  "key": "CX4.weeks_to_view"
+                },
+                {
+                  "key": "CX4.week_offset",
+                  "titleMap": {
+                    "0": "just current week",
+                    "1": "one week after current week",
+                    "-1": "one week prior to current week"
+                  }
+                }
+              ]
+            },
+            {
+              "title":""
+            }
+          ]
+        },
+        {
+          "key": "CX4.firstDayOfWeek",
+          "titleMap": {
+            "0": "Sunday",
+            "1": "Monday",
+            "2": "Tuesday",
+            "3": "Wednesday",
+            "4": "Thursday",
+            "5": "Friday",
+            "6": "Saturday"
+          }
+        },
+        "CX4.display_week_number",
+        "CX4.display_weather",
+        "CX4.fontsize",
+        {
+          "key": "CX4.maxeventsize"
+        },
+
+        {  
+          "type": "selectfieldset",
+          "key":"CX4.useSymbol",
+          "titleMap":{
+            "0":"do not display Symbol for calendar events",
+            "1":"display Symbol for calendar events"
+          },
+          "items": [    
+            {
+                "title":"{{nosymbol}}"
+            } ,                         
+            {
+              "type":"section",
+              "title":"{{useSymbolTrue}}",
+              "items":[
+                {                
+                  "key":"CX4.symbolName",
+                  "description":"{{symbol_desc}}"
+                }                
+              ]
+            }                
+          ]
+        }
+      ]
+    }
+  ]
+}

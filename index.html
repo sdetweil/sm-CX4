@@ -1,0 +1,46 @@
+<!--  CX4 for smart-mirror  -->
+<div ng-controller="CX4" class="{{CX4.container.classes}}" style="{{CX4.container.styles}}" xid="dom">
+<div class="CX4_MAGIC" id="{{CX4.instance.id}}" xid="magic"></div>
+<div class="headerContainer weekGrid">
+   <!--  dump out the day names -->
+   <div ng-repeat="day_of_week in CX4.days_of_week track by $index" class="weekday weekday_{{$index}}">{{day_of_week}}</div>
+</div>
+<!-- loop thru weeks, can be 0,1, or all the way to 0,3 (for month) -->
+<div ng-repeat="weeknum in CX4.weeks" > <!-- class="week" -->
+	  <!---  a cell contains the day info -->
+   <div class="weekGrid" ng-class="CX4.timeline || CX4.schedule?'cellContainerGrid':'cellContainer'">
+      <!--   for days 0 to 6  -->
+      <div ng-repeat="day_number in CX4.week_days" class="{{CX4.cell_classes(weeknum,day_number)}} " xid="cell" >
+         <!-- draw cell -->
+         <div class="cellHeader"  xid="cellHeader">
+            <!-- only display week number in first cell of week -->
+            <div ng-if="CX4.display_week_number  && day_number == 0" class="cw">{{CX4.week_number_list[weeknum]}}</div>
+            <!-- only display weather if requested -->
+            <div ng-if="CX4.display_weather_info && CX4.days[(weeknum *7)+day_number].forecast!=null" class="cellWeather" ng-init="forecast=CX4.days[(weeknum *7)+day_number].forecast">
+            		<span class="icon-small wi {{forecast.icon}}"></span>
+            		<span class="minTemp temperature">{{forecast.min}}</span>            		
+            		<span class="maxTemp temperature">{{forecast.max}}</span>
+            </div>
+            <div class="cellDate ">
+               <span class="day"> {{CX4.days[(weeknum *7)+day_number].date.format('D')}}</span>
+            </div>
+            <div class="cellBody"></div>
+            <div class="cellFooter"></div>
+         </div>
+         <div ng-if="CX4.schedule || CX4.timeline" class="eventContainer" ng-class="CX4.timeline?'weekGridTimeline weekGridRowTimeline':'weekGridSchedule weekGridRowSchedule'">
+               <div class="event {{CX4.calname(event.calendarName)}}" ng-class="event.recurring =! undefined?'singleday':''" style="grid-column: {{CX4.cell(day_number)}}; grid-row: {{CX4.cellRow(event)}};" ng-repeat="event in CX4.days[(weeknum *7)+day_number].events">
+               <span ng-if="CX4.useSymbol" class="symbol fa fa-{{CX4.symbolName}}"></span>
+               <div class="eventTime"><span class="eventTimeParts hour seq_0">{{event.start.format("hh")}}</span><span class="eventTimeParts literal seq_1">:</span><span class="eventTimeParts minute seq_2">{{event.start.format("mm")}}</span><span class="eventTimeParts literal seq_3"> </span><span class="eventTimeParts dayPeriod seq_4">{{event.start.format("A")}}</span></div>
+               <div "class=title">{{event.SUMMARY}}</div>
+            </div>
+         </div>
+         <div  ng-if="!CX4.schedule && !CX4.timeline" class="eventContainer weekGrid weekGridRow" >
+            <div class="event {{CX4.calname(event.calendarName)}} singleday" style="grid-column: {{CX4.cell(day_number)}};" ng-repeat="event in CX4.days[(weeknum *7)+day_number].events">
+               <span ng-if="CX4.useSymbol" class="symbol fa fa-{{CX4.symbolName}}"></span>
+               <div class="eventTime"><span class="eventTimeParts hour seq_0">{{event.start.format("hh")}}</span><span class="eventTimeParts literal seq_1">:</span><span class="eventTimeParts minute seq_2">{{event.start.format("mm")}}</span><span class="eventTimeParts literal seq_3"> </span><span class="eventTimeParts dayPeriod seq_4">{{event.start.format("A")}}</span></div>
+               <div "class=title">{{event.SUMMARY}}</div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

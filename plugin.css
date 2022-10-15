@@ -1,0 +1,345 @@
+@import url("../../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
+@import url("../../node_modules/@fortawesome/fontawesome-free/css/v4-shims.min.css");
+
+.CX4 {
+  /* you CAN modify these values; but SHOULD NOT to remove */
+  --celllinecolor: #333;
+  --cellbgcolor: rgba(0, 0, 0, 0.2);
+  --cellheaderheight: 25px;
+  --cellfooterheight: 2px;
+  --defaultcolor: #FFF;
+  --eventheight: calc(var(--fontsize) + 4px);
+  --totalheight: calc(var(--eventheight) * var(--maxeventlines));
+  font-size: var(--fontsize);
+  color: var(--defaultcolor);
+  line-height: calc(var(--eventheight))
+}
+
+
+
+.CX4 * {
+  box-sizing: border-box;
+}
+
+
+.CX4_MAGIC {
+  display: none;
+}
+
+
+.CX4.bodice {
+  width: 100%;
+  position: absolute;
+  bottom: 5vh;
+}
+
+.CX4 .headerContainer {
+  width:  94vw !important;
+  margin-left: 3vw;
+}
+
+.CX4 .weekday {
+  text-align:  center;
+}
+
+.CX4 .week {
+  width: 94vw;
+  margin-left: 3vw;
+  padding: 0 5px;
+  height: 100%; /*calc(var(--cellheaderheight) + var(--cellfooterheight) + calc(var(--eventheight) * var(--maxeventlines)));*/
+  position: relative;
+}
+
+.CX4 .weekGrid {
+  display: grid;
+  width: 100%;
+  grid-template-columns:
+    repeat(7,  1fr )
+  ;
+  grid-template-rows:  repeat(24,1fr);
+  grid-auto-columns: 0fr;
+}
+
+.CX4 .weekGridSchedule {
+  display: grid;
+  width: 100%;
+  grid-template-columns:
+    repeat(7, 1fr)
+  ;
+  grid-auto-columns: 0fr;
+}
+
+.CX4 .weekGridTimeline {
+  display: grid;
+  width: 100%;
+  grid-template-columns:
+    repeat(1, 1fr)
+  ;
+  grid-auto-columns: 0fr;
+}
+
+.CX4 .weekGridRow {
+  grid-template-rows:
+    repeat(var(--maxeventlines), [event-start] minmax(0, 1fr) [event-end])
+  ;
+
+  grid-auto-rows: 0;
+  overflow-y: hidden;
+  grid-auto-flow: column dense;
+}
+
+.CX4 .weekGridRowSchedule {
+  grid-template-rows:
+    repeat(24, 1fr)
+  ;
+
+  grid-auto-rows: none;
+  overflow-y: hidden;
+  grid-auto-flow: column dense;
+}
+
+
+
+.CX4 .cellContainer {
+  width: 100%;
+  z-index: 1;
+  height: calc(var(--cellheaderheight) + var(--cellfooterheight) + calc(var(--eventheight) * var(--maxeventlines))); 
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.CX4 .cellContainerGrid {
+  width: 100%;
+  z-index: 1;
+ /* height: calc(var(--cellheaderheight) + var(--cellfooterheight) + calc(var(--eventheight) * var(--maxeventlines))); */
+  height:  75vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.CX4 .eventContainer {
+  z-index: 10;
+  position: absolute;
+  /*bottom: var(--cellfooterheight);*/
+  left: 0;
+  width: 100%;
+  height: calc(var(--eventheight) * 1);
+
+}
+
+.CX4 .cell {
+  border: 1px solid var(--celllinecolor);
+  background-color: var(--cellbgcolor);
+  height: calc(var(--cellheaderheight) + var(--cellfooterheight) + calc(var(--eventheight) * var(--maxeventlines)));
+}
+
+.CX4 .cellGrid {
+  border: 1px solid var(--celllinecolor);
+  background-color: var(--cellbgcolor);
+  height: 75vh;
+}
+
+
+.CX4 .cellHeader {
+  text-align: right;
+  height: var(--cellheaderheight);
+  padding: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 90%;
+}
+
+.CX4 .cellFooter {
+  text-align: left;
+  height: var(--cellfooterheight);
+  padding: 2px;
+}
+
+.CX4 .cellBody {
+  height: 75vh; /*calc(var(--eventheight) * var(--maxeventlines));*/
+}
+
+.CX4 .cw {
+  font-size: 80%;
+  color: goldenrod;
+}
+
+.CX4 .cw::before {
+  content: 'CW '
+}
+
+.CX4 .cell.today {
+  border: 1px solid #FFF;
+}
+
+.CX4 .today .cellDate {
+  font-weight: bold;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  padding: 1px 8px;
+  margin: 1px;
+}
+
+.CX4 .thisMonth {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.CX4 .cellDate .literal {
+  margin-right: 3px;
+}
+
+.CX4 .cellDate :not(.day) {
+  display: none;
+}
+
+.CX4 .today .cellDate :not(.day) {
+  display: inline-block;
+}
+
+.CX4 .date_1 .cellDate :not(.day) {
+  display: inline-block;
+}
+
+.CX4 .week:nth-child(2) .cell:first-child .cellDate * {
+  display: inline-block;
+}
+
+
+.CX4 .event {
+  margin: 1px 2px 1px 2px;
+  padding: 0 2px;
+  text-align: left;
+  grid-row: span 1;
+  color: var(--defaultcolor);
+  display: flex;
+  justify-content: flex-start;
+  gap: 2px;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.CX4 .event .title {
+  font-size: 75%;
+  font-weight: bold;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 2px;
+
+}
+
+.CX4 .event.fullday,
+.CX4 .event.multiday {
+  background-color: var(--calendarColor);
+  mix-blend-mode: difference;
+  border-radius: 4px;
+  color: var(--oppositeColor);
+}
+
+/*.CX4 .event.singleday:not(.useSymbol)::before,
+.CX4 .event.singleday.useSymbol .symbol.noSymbol::before {
+  content: '⬤';
+  color: var(--calendarColor);
+  display: inline-block;
+  padding-right: 2px;
+  font-size: 75%;
+}
+
+.CX4 .event:not(.useSymbol) .symbol {
+  display: none;
+}
+
+.CX4 .event.useSymbol .symbol {
+  display: inline-block;
+  padding-right: 2px;
+  font-size: 75%;
+  align-self: center;
+} */
+
+.CX4 .event.singleday.useSymbol .symbol {
+  color: var(--calendarColor);
+}
+
+.CX4 .event.fullday .eventTime {
+  display: none;
+}
+
+.CX4 .event:not(.fullday) .eventTime {
+  display: inline-block;
+  padding-right: 2px;
+  font-size: 75%;
+  color: #EEE;
+}
+
+
+
+.CX4 .event.continueFromPreviousWeek .eventTime {
+  display: none;
+}
+
+.CX4 .event.passed {
+  filter: brightness(0.6) grayscale(0.33);
+}
+
+.CX4 .event.current {
+  filter: saturate(2);
+}
+
+
+.CX4 .weekday_0 {
+  color: #933;
+}
+
+.CX4 .weekday_6 {
+  color: #339;
+}
+
+.CX4 .cellHeader .cellDate {
+  flex-grow: 3;
+}
+
+.CX4 .cellHeader .cellWeather {
+  color: white;
+  margin: 2px;
+  font-size: 100%;
+  align-self: center;
+}
+
+.CX4 .cellHeader .cellWeather .icon{
+  font-size: 100%;
+  font-weight: bold;
+}
+
+.CX4 .cellHeader .cellWeather .maxTemp {
+  color: white;
+  font-weight: bold;
+  font-size: 90%;
+}
+
+.CX4 .cellHeader .cellWeather .minTemp {
+  color: lightgray;
+  font-weight: normal;
+  font-size: 90%;
+}
+
+.CX4 .cellHeader .cellWeather .temperature {
+ /* display: none;*/
+}
+
+.CX4 .cellHeader .cellWeather .maxTemp::before {
+  content: ' ↑';
+}
+
+.CX4 .cellHeader .cellWeather .minTemp::before {
+  content: ' ↓';
+}
+
+.CX4 .cellHeader .cellWeather .temperature::after {
+  content: '° '
+}

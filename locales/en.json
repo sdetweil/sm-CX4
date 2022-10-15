@@ -1,0 +1,29 @@
+{
+  "CX4": {
+    "config": {
+      "title": "CX4 Calendar Settings",
+      "mode":"Mode",
+      "First Day of week":"First Day of week",
+      "weeks in view":"weeks in view",
+      "week offset":"week offset",
+      "display_weather": "Display weather forecase for current day forward",
+      "display_week": "Display week number",
+      "fontsize": "text fontsize",
+      "maxevents": "Maximum events to show per day",
+      "week_title":"week",
+      "month_title":"month",
+      "sun":"Sunday",
+      "mon":"Monday",
+      "tue":"Tuesday",
+      "wed":"Wednesday",
+      "thu":"Thursday",
+      "fri":"Friday",
+      "sat":"Saturday",
+      "useSymbol":"display Symbol for calendar events",
+      "useSymbolTrue":"use Symbol name",
+      "symbol_name":"Symbol Name",
+      "symbol_desc":"this is the short name of the symbol from the FontAwesome symbol library",
+      "nosymbol":"do not use symbol for calendar events"
+    }
+  }
+}
